@@ -9,6 +9,9 @@ repositories {
     mavenCentral()
 }
 
+
+val kotlinxSerializationVersion by prop
+
 kotlin {
     jvm {
         compilations.all {
@@ -37,13 +40,21 @@ kotlin {
 
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val jvmMain by getting
+        val jvmMain by getting {
+            dependencies {
+
+            }
+        }
         val jvmTest by getting
         val jsMain by getting
         val jsTest by getting
